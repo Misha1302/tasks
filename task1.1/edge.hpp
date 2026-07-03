@@ -8,7 +8,7 @@
 #include <string>
 #include <utility>
 
-#include "types.h"
+#include "types.hpp"
 
 class Edge {
     std::string src_vertex_id_;

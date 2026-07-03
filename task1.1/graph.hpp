@@ -10,8 +10,8 @@
 #include <unordered_map>
 #include <vector>
 
-#include "edge.h"
-#include "vertex.h"
+#include "edge.hpp"
+#include "vertex.hpp"
 
 
 class Graph {

@@ -707,34 +707,34 @@ def static_scan(source_dir: Path, strict_static: bool) -> tuple[bool, list[str]]
     warnings: list[str] = []
     files = {p.name: p for p in source_dir.rglob("*") if p.is_file() and p.suffix in {".h", ".hpp", ".cpp"}}
 
-    required = ["graph.h", "vertex.h", "edge.h"]
+    required = ["graph.hpp", "vertex.hpp", "edge.hpp"]
     for name in required:
         if name not in files:
             warnings.append(f"missing expected source file {name}")
 
-    edge_h = files.get("edge.h")
+    edge_h = files.get("edge.hpp")
     if edge_h:
         text = edge_h.read_text(encoding="utf-8", errors="ignore")
         has_vertex_pointer = bool(re.search(r"\bVertex\s*\*", text))
         has_strings = "std::string" in text or "string" in text
         if not has_vertex_pointer:
-            warnings.append("edge.h: Edge does not visibly store Vertex* predecessor/successor; assignment requires pointers to nodes")
+            warnings.append("edge.hpp: Edge does not visibly store Vertex* predecessor/successor; assignment requires pointers to nodes")
         if has_strings and not has_vertex_pointer:
-            warnings.append("edge.h: Edge appears to store string ids instead of node pointers")
+            warnings.append("edge.hpp: Edge appears to store string ids instead of node pointers")
 
-    graph_h = files.get("graph.h")
+    graph_h = files.get("graph.hpp")
     if graph_h:
         text = graph_h.read_text(encoding="utf-8", errors="ignore")
         if "std::optional" in text and "#include <optional>" not in text:
-            warnings.append("graph.h uses std::optional but does not explicitly include <optional>")
+            warnings.append("graph.hpp uses std::optional but does not explicitly include <optional>")
         if "std::reference_wrapper" in text and "#include <functional>" not in text:
-            warnings.append("graph.h uses std::reference_wrapper but does not explicitly include <functional>")
+            warnings.append("graph.hpp uses std::reference_wrapper but does not explicitly include <functional>")
         if "std::unordered_set" in text and "#include <unordered_set>" not in text:
-            warnings.append("graph.h uses std::unordered_set but does not explicitly include <unordered_set>")
+            warnings.append("graph.hpp uses std::unordered_set but does not explicitly include <unordered_set>")
         if re.search(r"\w+_\s*\[\s*name\s*\]", text):
-            warnings.append("graph.h contains map[name]-style access; check it does not create missing vertices in getters/removers")
+            warnings.append("graph.hpp contains map[name]-style access; check it does not create missing vertices in getters/removers")
         if "SrcAndDestUnknown = SrcUnknown | DestUnknown" in text:
-            warnings.append("graph.h: enum class value uses operator| inside enum; portable C++ requires explicit value 6 or predeclared operator support")
+            warnings.append("graph.hpp: enum class value uses operator| inside enum; portable C++ requires explicit value 6 or predeclared operator support")
 
     main_cpp = files.get("main.cpp")
     if main_cpp:
