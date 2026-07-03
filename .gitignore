@@ -1,0 +1,63 @@
+# CMake build directories
+build/
+build-*/
+cmake-build-*/
+out/
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+
+# Ninja / Make generated files
+.ninja_deps
+.ninja_log
+build.ninja
+rules.ninja
+
+# Compiled objects, libraries, and executables
+*.o
+*.obj
+*.lo
+*.la
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+
+# CLion / JetBrains local project files
+*/.idea/
+*/*.iml
+
+# Python tester caches and virtual environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Editor, OS, and temporary files
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Logs and local run artifacts
+*.log
+*.tmp
+*.bak
+*.orig
+*.profraw
+*.profdata
