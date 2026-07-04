@@ -1,11 +1,11 @@
 #include <iostream>
 #include <set>
 #include <string>
+#include <unordered_map>
 
 #include "../common/graph.hpp"
 #include "../common/io.hpp"
 #include "../common/types.hpp"
-
 
 void print_edge_error_if_exists(const std::string &src, const std::string &dest, const Graph::EdgeActionResult result) {
     if (result == Graph::EdgeActionResult::SrcAndDestUnknown)
@@ -24,7 +24,7 @@ std::unordered_map<std::string, i64> dejkstra(const Graph &graph, const std::str
     vertices.insert({0, start});
 
     while (!vertices.empty()) {
-        auto [dist, name] = *--vertices.begin();
+        auto [dist, name] = *vertices.begin();
         vertices.erase(vertices.begin());
         if (dist != distances[name]) continue;
 

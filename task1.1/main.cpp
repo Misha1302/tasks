@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <unordered_map>
 
 #include "../common/graph.hpp"
 #include "../common/io.hpp"

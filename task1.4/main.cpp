@@ -1,17 +1,14 @@
 #include <algorithm>
 #include <iostream>
-#include <queue>
-#include <set>
-#include <stack>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 #include "../common/edge.hpp"
 #include "../common/graph.hpp"
 #include "../common/io.hpp"
 #include "../common/types.hpp"
-
 
 void print_edge_error_if_exists(const std::string &src, const std::string &dest, const Graph::EdgeActionResult result) {
     if (result == Graph::EdgeActionResult::SrcAndDestUnknown)
@@ -102,8 +99,15 @@ void solve() {
             }
         } else if (cmd == "TARJAN") {
             auto u = input<std::string>();
+            if (not g.has_vertex(u)) {
+                std::cout << "Unknown node " << u << "\n";
+                continue;
+            }
+
             auto value = Tarjan{}.get_components(g, u);
             for (const auto &vec: value) {
+                if (vec.size() <= 1) continue;
+
                 for (const auto &v: vec)
                     std::cout << v << " ";
                 std::cout << "\n";

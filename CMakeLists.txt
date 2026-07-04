@@ -18,3 +18,8 @@ target_link_libraries(task1_3 PRIVATE graph_common)
 
 add_executable(task1_4 task1.4/main.cpp)
 target_link_libraries(task1_4 PRIVATE graph_common)
+
+target_compile_options(task1_1 PRIVATE -Wall -Wextra -Wpedantic -Werror)
+target_compile_options(task1_2 PRIVATE -Wall -Wextra -Wpedantic -Werror)
+target_compile_options(task1_3 PRIVATE -Wall -Wextra -Wpedantic -Werror)
+target_compile_options(task1_4 PRIVATE -Wall -Wextra -Wpedantic -Werror)

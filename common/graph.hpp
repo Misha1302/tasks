@@ -5,6 +5,10 @@
 #ifndef TASK1_GRAPH_H
 #define TASK1_GRAPH_H
 
+#include <functional>
+#include <optional>
+#include <string>
+#include <unordered_set>
 #include <expected>
 #include <memory>
 #include <unordered_map>
