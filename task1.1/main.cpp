@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 
-#include "graph.hpp"
-#include "io.hpp"
-#include "types.hpp"
+#include "../common/graph.hpp"
+#include "../common/io.hpp"
+#include "../common/types.hpp"
 
 void get_post_order_internal(
     Graph &graph, const std::string &u, std::unordered_map<std::string, i64> &colors,

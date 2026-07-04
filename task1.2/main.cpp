@@ -2,9 +2,9 @@
 #include <set>
 #include <string>
 
-#include "graph.hpp"
-#include "io.hpp"
-#include "types.hpp"
+#include "../common/graph.hpp"
+#include "../common/io.hpp"
+#include "../common/types.hpp"
 
 
 void print_edge_error_if_exists(const std::string &src, const std::string &dest, const Graph::EdgeActionResult result) {
