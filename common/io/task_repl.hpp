@@ -4,6 +4,7 @@
 
 #ifndef GRAPH_TASKS_TASK_REPL_HPP
 #define GRAPH_TASKS_TASK_REPL_HPP
+
 #include <iostream>
 #include <string>
 
@@ -15,21 +16,25 @@ class TaskRepl : public Repl {
     static void print_edge_error_if_exists(
         const std::string &src,
         const std::string &dest,
-        const Graph::EdgeActionResult result
+        const GraphEdgeActionResult result
     ) {
-        if (result == Graph::EdgeActionResult::SrcAndDestUnknown)
+        if (result == GraphEdgeActionResult::SrcAndDestUnknown)
             std::cout << "Unknown nodes " << src << " " << dest << "\n";
-        else if (result == Graph::EdgeActionResult::SrcUnknown)
+        else if (result == GraphEdgeActionResult::SrcUnknown)
             std::cout << "Unknown node " << src << "\n";
-        else if (result == Graph::EdgeActionResult::DestUnknown)
+        else if (result == GraphEdgeActionResult::DestUnknown)
             std::cout << "Unknown node " << dest << "\n";
+        else if (result == GraphEdgeActionResult::EdgeAlreadyAdded)
+            std::cout << "Edge already was added " << src << " " << dest << "\n";
     }
 
 public:
     TaskRepl() {
         register_cmd("NODE", [](Graph &g) {
             const auto node_name = input<std::string>();
-            g.add_vertex(node_name);
+            const auto result = g.add_vertex(node_name);
+            if (result == GraphVertexActionResult::UnknownVertex)
+                std::cout << "Unknown node " << node_name << "\n";
         });
 
         register_cmd("EDGE", [](Graph &g) {
@@ -47,7 +52,7 @@ public:
                 const auto node_name = input<std::string>();
                 const auto result = g.remove_vertex(node_name);
 
-                if (result == Graph::VertexActionResult::UnknownVertex)
+                if (result == GraphVertexActionResult::UnknownVertex)
                     std::cout << "Unknown node " << node_name << "\n";
             } else if (obj_to_delete == "EDGE") {
                 const auto src = input<std::string>();

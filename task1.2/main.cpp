@@ -39,6 +39,11 @@ void solve() {
     TaskRepl task_repl;
     task_repl.register_cmd("DIJKSTRA", [](Graph &g) {
         const auto node_name = input<std::string>();
+        if (not g.has_vertex(node_name)) {
+            std::cout << "Unknown node " << node_name << "\n";
+            return;
+        }
+
         const auto dejkstra_distances = dejkstra(g, node_name);
         for (const auto &[name, dist]: dejkstra_distances) {
             std::cout << name << " " << dist << "\n";

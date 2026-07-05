@@ -22,9 +22,9 @@ public:
 
     [[nodiscard]] const std::string &get_name() const { return name_; }
 
-    [[nodiscard]] std::unordered_set<Edge *> &get_edges_in() { return edges_in_; }
+    [[nodiscard]] const std::unordered_set<Edge *> &get_edges_in() const { return edges_in_; }
 
-    [[nodiscard]] std::unordered_set<Edge *> &get_edges_out() { return edges_out_; }
+    [[nodiscard]] const std::unordered_set<Edge *> &get_edges_out() const { return edges_out_; }
 
 
     void add_in_edge(Edge *edge) {
@@ -41,11 +41,6 @@ public:
 
     void remove_out_edge(Edge *edge) {
         edges_out_.erase(edge);
-    }
-
-    void clear() {
-        edges_in_.clear();
-        edges_out_.clear();
     }
 };
 

@@ -4,7 +4,7 @@ project(graph_tasks)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(graph_common INTERFACE)
+add_library(graph_common INTERFACE common)
 target_include_directories(graph_common INTERFACE common)
 
 add_executable(task1_1 task1.1/main.cpp)

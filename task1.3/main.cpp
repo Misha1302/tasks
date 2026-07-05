@@ -82,7 +82,7 @@ class Dinic {
         }
 
         const auto arcs = make_arcs_from(u, graph);
-        while (next_arc_index[u] < (i64) arcs.size()) {
+        while (next_arc_index[u] < static_cast<i64>(arcs.size())) {
             const auto &e = arcs[next_arc_index[u]];
             const auto &v = e.to();
 
