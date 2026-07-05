@@ -8,8 +8,8 @@
 #include "../common/io/io.hpp"
 #include "../common/types.hpp"
 
-std::unordered_map<std::string, i64> dejkstra(const Graph &graph, const std::string &start) {
-    std::unordered_map<std::string, i64> distances;
+std::map<std::string, i64> dejkstra(const Graph &graph, const std::string &start) {
+    std::map<std::string, i64> distances;
     distances[start] = 0;
 
     std::set<std::pair<i64, std::string> > vertices;
