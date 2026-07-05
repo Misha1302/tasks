@@ -7,21 +7,11 @@
 #include <limits>
 #include <ranges>
 
-#include "../common/edge.hpp"
-#include "../common/graph.hpp"
-#include "../common/io.hpp"
+#include "../common/io/task_repl.hpp"
+#include "../common/structures/edge.hpp"
+#include "../common/structures/graph.hpp"
+#include "../common/io/io.hpp"
 #include "../common/types.hpp"
-
-
-void print_edge_error_if_exists(const std::string &src, const std::string &dest, const Graph::EdgeActionResult result) {
-    if (result == Graph::EdgeActionResult::SrcAndDestUnknown)
-        std::cout << "Unknown nodes " << src << " " << dest << "\n";
-    else if (result == Graph::EdgeActionResult::SrcUnknown)
-        std::cout << "Unknown node " << src << "\n";
-    else if (result == Graph::EdgeActionResult::DestUnknown)
-        std::cout << "Unknown node " << dest << "\n";
-}
-
 
 class Dinic {
     struct ResidualArc {
@@ -120,7 +110,7 @@ class Dinic {
         return 0;
     }
 
-    i64 get_blocking_flow_cost(
+    static i64 get_blocking_flow_cost(
         const Graph &graph,
         std::unordered_map<std::string, i64> &levels,
         std::unordered_map<Edge *, std::pair<i64, i64> > &edge_forward_and_reversed_weights,
@@ -141,7 +131,7 @@ class Dinic {
     }
 
 public:
-    i64 max_flow(const Graph &graph, const std::string &start, const std::string &end) {
+    static i64 max_flow(const Graph &graph, const std::string &start, const std::string &end) {
         if (not graph.has_vertex(start) or not graph.has_vertex(end)) return -1;
         if (start == end) return 0;
 
@@ -167,36 +157,17 @@ public:
 
 
 void solve() {
-    Graph g;
-    std::string cmd;
-    while (std::cin >> cmd) {
-        if (cmd == "NODE") {
-            auto node_name = input<std::string>();
-            g.add_vertex(node_name);
-        } else if (cmd == "EDGE") {
-            auto src = input<std::string>(), dest = input<std::string>();
-            auto weight = input<i64>();
-
-            const auto result = g.add_edge(src, dest, weight);
-            print_edge_error_if_exists(src, dest, result);
-        } else if (cmd == "REMOVE") {
-            auto obj_to_delete = input<std::string>();
-            if (obj_to_delete == "NODE") {
-                auto node_name = input<std::string>();
-                auto result = g.remove_vertex(node_name);
-                if (result == Graph::VertexActionResult::UnknownVertex)
-                    std::cout << "Unknown node " << node_name << "\n";
-            } else if (obj_to_delete == "EDGE") {
-                auto src = input<std::string>(), dest = input<std::string>();
-                auto result = g.remove_edge(src, dest);
-                print_edge_error_if_exists(src, dest, result);
-            }
-        } else if (cmd == "MAXFLOW") {
-            auto start = input<std::string>(), end = input<std::string>();
-            auto value = Dinic{}.max_flow(g, start, end);
+    TaskRepl task_repl;
+    task_repl.register_cmd(
+        "MAXFLOW",
+        [](Graph &g) {
+            const auto start = input<std::string>();
+            const auto end = input<std::string>();
+            const auto value = Dinic::max_flow(g, start, end);
             std::cout << value << "\n";
         }
-    }
+    );
+    task_repl.start();
 }
 
 int main() {
