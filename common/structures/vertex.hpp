@@ -13,35 +13,39 @@
 
 class Vertex {
     std::string name_;
-    std::unordered_set<Edge *> edges_in_;
-    std::unordered_set<Edge *> edges_out_;
+    std::unordered_set<Edge*> edges_in_;
+    std::unordered_set<Edge*> edges_out_;
 
-public:
-    explicit Vertex(std::string name) : name_(std::move(name)) {
+  public:
+    explicit Vertex(std::string name) : name_(std::move(name)) {}
+
+    [[nodiscard]] const std::string& get_name() const {
+        return name_;
     }
 
-    [[nodiscard]] const std::string &get_name() const { return name_; }
+    [[nodiscard]] const std::unordered_set<Edge*>& get_edges_in() const {
+        return edges_in_;
+    }
 
-    [[nodiscard]] const std::unordered_set<Edge *> &get_edges_in() const { return edges_in_; }
+    [[nodiscard]] const std::unordered_set<Edge*>& get_edges_out() const {
+        return edges_out_;
+    }
 
-    [[nodiscard]] const std::unordered_set<Edge *> &get_edges_out() const { return edges_out_; }
-
-
-    void add_in_edge(Edge *edge) {
+    void add_in_edge(Edge* edge) {
         edges_in_.insert(edge);
     }
 
-    void add_out_edge(Edge *edge) {
+    void add_out_edge(Edge* edge) {
         edges_out_.insert(edge);
     }
 
-    void remove_in_edge(Edge *edge) {
+    void remove_in_edge(Edge* edge) {
         edges_in_.erase(edge);
     }
 
-    void remove_out_edge(Edge *edge) {
+    void remove_out_edge(Edge* edge) {
         edges_out_.erase(edge);
     }
 };
 
-#endif //TASK1_VERTEX_H
+#endif // TASK1_VERTEX_H

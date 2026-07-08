@@ -5,6 +5,7 @@
 #ifndef GRAPH_TASKS_REPL_HPP
 #define GRAPH_TASKS_REPL_HPP
 
+#include <functional>
 #include <iostream>
 #include <map>
 #include <string>
@@ -12,10 +13,10 @@
 #include "../structures/graph.hpp"
 
 class Repl {
-    std::map<std::string, std::function<void(Graph &g)> > commands;
+    std::map<std::string, std::function<void(Graph& g)>> commands;
 
-public:
-    void register_cmd(const std::string &cmd, const std::function<void(Graph &g)> &func) {
+  public:
+    void register_cmd(const std::string& cmd, const std::function<void(Graph& g)>& func) {
         commands[cmd] = func;
     }
 
@@ -34,4 +35,4 @@ public:
     }
 };
 
-#endif //GRAPH_TASKS_REPL_HPP
+#endif // GRAPH_TASKS_REPL_HPP

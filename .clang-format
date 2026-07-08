@@ -1,0 +1,27 @@
+BasedOnStyle: LLVM
+Language: Cpp
+Standard: Latest
+
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 120
+
+BreakBeforeBraces: Attach
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+
+BinPackArguments: false
+BinPackParameters: false
+
+BreakBeforeBinaryOperators: None
+PenaltyBreakBeforeFirstCallParameter: 100000
+PenaltyBreakAssignment: 100000
+PenaltyExcessCharacter: 1000
+PenaltyReturnTypeOnItsOwnLine: 100000
+
+PointerAlignment: Left
+ReferenceAlignment: Left
+SpaceBeforeParens: ControlStatements
+SpacesInAngles: Never

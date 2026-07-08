@@ -7,11 +7,10 @@
 
 #include <iostream>
 
-template<typename T>
-T input() {
+template <typename T> T input() {
     T value;
     std::cin >> value;
     return value;
 }
 
-#endif //TASK1_2_IO_HPP
+#endif // TASK1_2_IO_HPP

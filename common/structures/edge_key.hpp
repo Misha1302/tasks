@@ -10,13 +10,13 @@
 struct EdgeKey {
     std::string src, dest;
 
-    bool operator <(const EdgeKey &rhs) const {
+    bool operator<(const EdgeKey& rhs) const {
         return src < rhs.src or (src == rhs.src and dest < rhs.dest);
     }
 
-    bool operator ==(const EdgeKey &rhs) const {
+    bool operator==(const EdgeKey& rhs) const {
         return src == rhs.src and dest == rhs.dest;
     }
 };
 
-#endif //GRAPH_TASKS_EDGEKEY_HPP
+#endif // GRAPH_TASKS_EDGEKEY_HPP

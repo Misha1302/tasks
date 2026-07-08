@@ -1,0 +1,53 @@
+---
+Checks: >
+  -*,
+  misc-include-cleaner,
+  clang-analyzer-*,
+  bugprone-*,
+  performance-*,
+  portability-*,
+  modernize-*,
+  readability-braces-around-statements,
+  readability-container-contains,
+  readability-duplicate-include,
+  readability-inconsistent-declaration-parameter-name,
+  readability-misleading-indentation,
+  readability-redundant-*,
+  readability-simplify-boolean-expr,
+  readability-use-anyofallof,
+  cppcoreguidelines-pro-type-member-init,
+  cppcoreguidelines-slicing,
+  cppcoreguidelines-special-member-functions,
+  misc-*,
+  -modernize-use-trailing-return-type,
+  -modernize-use-auto,
+  -modernize-avoid-c-arrays,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -cppcoreguidelines-pro-type-vararg,
+  -misc-non-private-member-variables-in-classes
+
+WarningsAsErrors: >
+  clang-analyzer-*,
+  bugprone-*,
+  performance-*,
+  portability-*,
+  readability-braces-around-statements,
+  readability-misleading-indentation,
+  cppcoreguidelines-pro-type-member-init,
+  cppcoreguidelines-slicing,
+  misc-include-cleaner
+
+HeaderFilterRegex: '.*'
+FormatStyle: file
+
+CheckOptions:
+  - key: readability-braces-around-statements.ShortStatementLines
+    value: '0'
+  - key: modernize-use-nullptr.NullMacros
+    value: 'NULL'
+  - key: misc-include-cleaner.UnusedIncludes
+    value: 'true'
+  - key: misc-include-cleaner.MissingIncludes
+    value: 'true'
